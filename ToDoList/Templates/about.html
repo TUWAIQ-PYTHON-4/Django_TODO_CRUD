@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}About{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<h1>About Me</h1>
+<h2>My Name is {{name}}</h2>
+{% endblock %}
+</body>
+</html>
