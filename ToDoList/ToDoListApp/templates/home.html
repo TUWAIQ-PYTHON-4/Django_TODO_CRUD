@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+    {% block title %}
+      <title>Home</title>
+    {% endblock %}
+
+{% block content %}
+</br><table class="table">
+
+{% for i in all_items %}
+    {% if i.completed %}
+<tr class = 'table-success'>
+      <td> <a href="{% url 'edit' i.id %} "> {{ i.item }} </a> </td>
+    <td>{{i.completed}}</td>
+      <td> <a href="{% url 'delete' i.id %} "> Delete </a> </td>
+</tr>
+    {% else %}
+    <tr>
+      <td> <a href="{% url 'edit' i.id %} "> {{ i.item }} </a> </td>
+    <td>{{i.completed}}</td>
+        <td> <a href="{% url 'delete' i.id %} "> Delete </a> </td>
+</tr>
+     {% endif %}
+{% endfor %}</table>
+{% endblock %}
