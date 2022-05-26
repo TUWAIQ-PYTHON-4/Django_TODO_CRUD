@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3>Hellow world , Home page</h3>
+
+<a target="_blank" href="{{ column_3_item.home}}">Add</a>
+<a target="_blank" href="{{ column_3_item.link_for_item }}">Delete</a>
+<a  href="{%url 'home'%}">Edit</a>
+<center>
+{% if context %}
+ <table class="table table-striped table-dark">
+        <thead>
+     <tr>
+         <th scope="col">To Do List</th>
+      <th scope="col">Date</th>
+      <th scope="col">Check
+         <th scope="col">Delect</th>
+     </tr>
+     </thead>
+{% for item in context  %}
+
+     <tr  class="bg-success">
+         <td> <a href="{% url 'edit' item.id %}"> {{item.item}} </a> </td>
+         <td> <a href="{% url 'edit' item.id %}"> {{item.date_created }} </a> </td>
+         <td>{{item.completed}}</td>
+         <td> <a href="{% url 'delete' item.id %}"> Delete </a></td>
+     </tr>
+     {% endfor %}
+ </table>
+    </center>
+{% endif %}
+{% endblock %}
