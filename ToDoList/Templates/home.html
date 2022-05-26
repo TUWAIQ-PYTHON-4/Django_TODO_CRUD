@@ -1,0 +1,43 @@
+
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}Home{% endblock %}</title>
+</head>
+<body>
+
+{% block content %}
+
+{% if list %}
+<table class="table">
+    {% for i in list %}
+    {% if i.completed %}
+        <tr class="table-success">
+            <td> <a href="{% url 'edit' i.id %} "> {{ i.item }} </a> </td>
+            <td>{{ i.completed }} </td>
+            <td> <a href="{% url 'delete' i.id %} "> Delete </a> </td>
+
+        </tr>
+
+      {% else %}
+<tr>
+    <td> <a href="{% url 'edit' i.id %} "> {{ i.item }} </a>  </td>
+    <td>{{ i.completed }} </td>
+    <td> <a href="{% url 'delete' i.id %} "> Delete </a> </td>
+</tr>
+
+    {% endif%}
+
+
+{% endfor %}
+
+    </table>
+{% endif %}
+{% endblock %}
+
+</body>
+</html>
+
+
