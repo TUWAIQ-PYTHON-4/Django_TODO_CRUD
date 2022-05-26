@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page Search</title>
+</head>
+<body>
+
+
+{% block content %}
+<h1> This is will appear in all page </h1>
+<h1>Hello, world! Hello page</h1>
+
+
+{% for i in context%}
+{% if i.completed %}
+<table class="table  table-success"  >
+   <tr>
+    <th><a href="{% url 'edit' i.id %}">{{i.item}}</a></th>
+    <th>{{i.completed}}</th>
+       <th><a href="{%url 'delete' i.id %}"> Delete</a></th>
+
+
+   </tr>
+</table>
+
+{% else %}
+<table class="table" >
+   <tr>
+    <th><a href="{% url 'edit' i.id %}">{{i.item}}</a></th>
+    <th>{{i.completed}}</th>
+       <th><a href="{% url 'delete' i.id %}">Delete</a></th>
+
+   </tr>
+</table>
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+</body>
+</html>
+
+<!--<th><a href="{% url 'delete' i.id %}">Delete</a></th> -->
+
+<!-- <th><a href="{%url 'delete' i.id %}"> Delete</a></th>      -->
