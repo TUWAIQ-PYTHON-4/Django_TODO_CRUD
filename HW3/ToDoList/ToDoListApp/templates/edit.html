@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} To Do List | About me {% endblock %}
+
+{% block content %}
+{% if item %}
+    <form class="d-flex" method="post">
+       {% csrf_token %}
+      <input class="form-control me-2" type="" placeholder={{item.item}} name="item" aria-label="Search">
+      <button class="btn btn-outline-secondary" type="submit" >Add To Do</button>
+    </form>
+{% endif %}
+{% endblock %}
