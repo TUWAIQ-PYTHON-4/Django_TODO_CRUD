@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %} To-Do List | Home {% endblock %}
+
+{% block content %}
+<br>
+<h3>To Do list </h3>
+{% if all_items %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">List</th>
+      <th scope="col">Completed</th>
+    </tr>
+  </thead>
+    {% for i in all_items %}
+  <tbody>
+    {% if i.completed == True %}
+        <tr class="table-success">
+    {% endif%}
+            <td>{{ i.item }}</td>
+            <td>{{ i.completed }}</td>
+            <td>
+            {% csrf_token %}
+            <a href=" {% url 'ToDoApp:delete' i.id %} "> Delete </a>
+            </td>
+            <td>
+            {% csrf_token %}
+            <a href=" {% url 'ToDoApp:update' i.id %} "> Update </a>
+            </td>
+        </tr>
+  </tbody>
+    {% endfor %}
+    {% endif %}
+</table>
+{% endblock %}
