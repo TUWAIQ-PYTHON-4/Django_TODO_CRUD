@@ -22,10 +22,20 @@ def about(request):
     lname = 'Alharbi'
     return render(request, "about.html", {'fname': fname, 'lname': lname})
 
-
-def delete(request,list_id):
+def delete(request, list_id):
     item = List.objects.get(pk=list_id)
     item.delete()
-    return redirect('home.html')
+    return redirect('home')
 
+
+def edit(request, list_id):
+    if request.method == "POST":
+        item = List.objects.get(pk=list_id)
+        form = ListForm(request.POST or None, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        item = List.objects.get(pk=list_id)
+        return render(request, 'edit.html', {'item': item})
 
